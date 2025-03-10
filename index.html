@@ -126,31 +126,18 @@ irritação, é sensível.</p>
         function finalizar() {
             const tipoPele = document.querySelector('input[name="pele"]:checked')?.value;
             const desafio = document.querySelector('input[name="desafio"]:checked')?.value;
-            if (tipoPele && desafio) {
+            if (tipoPele === "normal" && desafio) {
                 const links = {
-                    normal: {
-                        rugas: "c6fe5c94d07342",
-                        manchas: "ce024bba0a06f4",
-                        textura: "c9177722052e73",
-                        olheiras: "c099b95cfbc592",
-                        iniciar: "cb488123148ae3"
+                    rugas: "c6fe5c94d07342",
+                    manchas: "ce024bba0a06f4",
+                    textura: "c9177722052e73",
+                    olheiras: "c099b95cfbc592",
+                    iniciar: "cb488123148ae3"
                 };
-                    seca: {
-                        rugas: "c27058bf5435c0",
-                        manchas: "c576effffa9d44",
-                        textura: "c82c339b452790",
-                        olheiras: "c0da964a3bc0f3",
-                        iniciar: "ca00d8b5b4709f"
-                    }
-                };
-             if (links[tipoPele] && links[tipoPele][desafio]) {
-                    document.getElementById('resultado').innerHTML = 
-                    `<button class="botao" onclick="window.location.href='https://www.bioage.com.br/professional/cart/create?code=${links[tipoPele][desafio]}'">KIT SKINCARE PELE ${tipoPele.toUpperCase()}/${desafio.toUpperCase()}</button>`;
-                    mostrarTela(7);
-                }
+                document.getElementById('Preparamos um Kit Skincare Ideal para seu tipo de pele, clique abaixo e aproveite esta oportunidade').innerHTML = <button class="botao" onclick="window.location.href='https://www.bioage.com.br/professional/cart/create?code=${links[desafio]}'">KIT SKINCARE PELE NORMAL/${desafio.toUpperCase()}</button>;
+                mostrarTela(7);
             }
         }
     </script>
 </body>
 </html>
-
