@@ -80,8 +80,28 @@
         <button class="botao" onclick="mostrarTela(4)">Próximo</button>
     </div>
 
+    <div class="container" id="tela4" style="display: none;">
+        <h2>Estamos próximos de identificar o seu tipo de pele</h2>
+        <p>Dica: Para descobrir seu tipo de pele, lave o rosto com um sabonete neutro e espere 30 minutos sem aplicar nenhum produto...</p>
+        <button class="botao" onclick="mostrarTela(5)">Próximo</button>
+    </div>
+
+    <div class="container" id="tela5" style="display: none;">
+        <h2>Identifique seu tipo de pele</h2>
+        <div class="opcao"><img src="imagens/imagem1.jpg"><label><input type="radio" name="pele" value="normal"> Normal</label></div>
+        <div class="opcao"><img src="imagens/imagem2.jpg"><label><input type="radio" name="pele" value="seca"> Seca</label></div>
+        <button class="botao" onclick="mostrarTela(6)">Próximo</button>
+    </div>
+
+    <div class="container" id="tela6" style="display: none;">
+        <h2>Qual o desafio da sua pele?</h2>
+        <div class="opcao"><img src="imagens/imagem8.jpg"><label><input type="radio" name="desafio" value="rugas"> Rugas</label></div>
+        <div class="opcao"><img src="imagens/imagem10.jpg"><label><input type="radio" name="desafio" value="manchas"> Manchas</label></div>
+        <button class="botao" onclick="finalizar()">Finalizar</button>
+    </div>
+
     <div class="container" id="tela7" style="display: none;">
-        <h2>Preparamos um Kit Skincare Ideal para seu tipo de pele, clique abaixo e aproveite esta oportunidade</h2>
+        <h2>Preparamos um Kit Skincare Ideal para seu tipo de pele</h2>
         <div id="resultado"></div>
     </div>
 
@@ -96,26 +116,22 @@
         function finalizar() {
             const tipoPele = document.querySelector('input[name="pele"]:checked')?.value;
             const desafio = document.querySelector('input[name="desafio"]:checked')?.value;
-            
-            const links = {
-                normal: {
+            let link = "";
+            if (tipoPele === "normal") {
+                const links = {
                     rugas: "c6fe5c94d07342",
-                    manchas: "ce024bba0a06f4",
-                    textura: "c9177722052e73",
-                    olheiras: "c099b95cfbc592",
-                    iniciar: "cb488123148ae3"
-                },
-                seca: {
+                    manchas: "ce024bba0a06f4"
+                };
+                link = links[desafio];
+            } else if (tipoPele === "seca") {
+                const linksSeca = {
                     rugas: "c27058bf5435c0",
-                    manchas: "c576effffa9d44",
-                    textura: "c82c339b452790",
-                    olheiras: "c0da964a3bc0f3",
-                    iniciar: "ca00d8b5b4709f"
-                }
-            };
-            
-            if (tipoPele && desafio && links[tipoPele] && links[tipoPele][desafio]) {
-                document.getElementById('resultado').innerHTML = `<button class="botao" onclick="window.location.href='https://www.bioage.com.br/professional/cart/create?code=${links[tipoPele][desafio]}'">KIT SKINCARE PELE ${tipoPele.toUpperCase()}/${desafio.toUpperCase()}</button>`;
+                    manchas: "c576effffa9d44"
+                };
+                link = linksSeca[desafio];
+            }
+            if (link) {
+                document.getElementById('resultado').innerHTML = `<button class="botao" onclick="window.location.href='https://www.bioage.com.br/professional/cart/create?code=${link}'">Comprar</button>`;
                 mostrarTela(7);
             }
         }
